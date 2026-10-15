@@ -1,5 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Etapa 5 — paleta do app (Verde Concluído).
+
+    Esquema de cores do Material Design 3 gerado a partir de UMA cor-semente (#226A4C no claro).
+    Cada cor tem um par "on": colorPrimary é o fundo do botão, colorOnPrimary é o texto em cima dele.
+    Ferramenta para gerar outra paleta: https://material-foundation.github.io/material-theme-builder/
+
+    As cores daqui NÃO devem ser usadas direto nos layouts (@color/...).
+    O tema (themes.xml) liga cada cor a um ATRIBUTO (colorPrimary, colorSurface...)
+    e os layouts usam o atributo: ?attr/colorPrimary. Assim o modo escuro troca tudo sozinho.
+-->
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- ===== Modo claro ===== -->
+    <!-- Cor principal (botões, destaques) -->
+    <color name="md_theme_light_primary">#226A4C</color>
+    <color name="md_theme_light_on_primary">#FFFFFF</color>
+    <color name="md_theme_light_primary_container">#AAF2CB</color>
+    <color name="md_theme_light_on_primary_container">#005236</color>
+    <!-- Cor secundária -->
+    <color name="md_theme_light_secondary">#4D6357</color>
+    <color name="md_theme_light_on_secondary">#FFFFFF</color>
+    <color name="md_theme_light_secondary_container">#D0E8D8</color>
+    <color name="md_theme_light_on_secondary_container">#364B3F</color>
+    <!-- Cor terciária (contraste/acento) -->
+    <color name="md_theme_light_tertiary">#3D6473</color>
+    <color name="md_theme_light_on_tertiary">#FFFFFF</color>
+    <color name="md_theme_light_tertiary_container">#C0E9FA</color>
+    <color name="md_theme_light_on_tertiary_container">#244C5A</color>
+    <!-- Erro -->
+    <color name="md_theme_light_error">#BA1A1A</color>
+    <color name="md_theme_light_on_error">#FFFFFF</color>
+    <color name="md_theme_light_error_container">#FFDAD6</color>
+    <color name="md_theme_light_on_error_container">#93000A</color>
+    <!-- Fundo e superfícies -->
+    <color name="md_theme_light_background">#F5FBF5</color>
+    <color name="md_theme_light_on_background">#171D19</color>
+    <color name="md_theme_light_surface">#F5FBF5</color>
+    <color name="md_theme_light_on_surface">#171D19</color>
+    <color name="md_theme_light_surface_variant">#DCE5DD</color>
+    <color name="md_theme_light_on_surface_variant">#404943</color>
+    <color name="md_theme_light_outline">#707973</color>
+    <color name="md_theme_light_outline_variant">#C0C9C1</color>
+    <!-- Superfícies em camadas (cartões, campos) -->
+    <color name="md_theme_light_surface_container_lowest">#FFFFFF</color>
+    <color name="md_theme_light_surface_container_low">#F0F5EF</color>
+    <color name="md_theme_light_surface_container">#EAEFE9</color>
+    <color name="md_theme_light_surface_container_high">#E4EAE4</color>
+    <color name="md_theme_light_surface_container_highest">#DEE4DE</color>
+    <!-- Cores inversas (Snackbar) -->
+    <color name="md_theme_light_inverse_surface">#2C322E</color>
+    <color name="md_theme_light_inverse_on_surface">#EDF2EC</color>
+    <color name="md_theme_light_inverse_primary">#8ED5B0</color>
+
+    <!-- ===== Modo escuro ===== -->
+    <!-- Cor principal (botões, destaques) -->
+    <color name="md_theme_dark_primary">#8ED5B0</color>
+    <color name="md_theme_dark_on_primary">#003824</color>
+    <color name="md_theme_dark_primary_container">#005236</color>
+    <color name="md_theme_dark_on_primary_container">#AAF2CB</color>
+    <!-- Cor secundária -->
+    <color name="md_theme_dark_secondary">#B4CCBD</color>
+    <color name="md_theme_dark_on_secondary">#20352A</color>
+    <color name="md_theme_dark_secondary_container">#364B3F</color>
+    <color name="md_theme_dark_on_secondary_container">#D0E8D8</color>
+    <!-- Cor terciária (contraste/acento) -->
+    <color name="md_theme_dark_tertiary">#A5CDDE</color>
+    <color name="md_theme_dark_on_tertiary">#063543</color>
+    <color name="md_theme_dark_tertiary_container">#244C5A</color>
+    <color name="md_theme_dark_on_tertiary_container">#C0E9FA</color>
+    <!-- Erro -->
+    <color name="md_theme_dark_error">#FFB4AB</color>
+    <color name="md_theme_dark_on_error">#690005</color>
+    <color name="md_theme_dark_error_container">#93000A</color>
+    <color name="md_theme_dark_on_error_container">#FFDAD6</color>
+    <!-- Fundo e superfícies -->
+    <color name="md_theme_dark_background">#0F1511</color>
+    <color name="md_theme_dark_on_background">#DEE4DE</color>
+    <color name="md_theme_dark_surface">#0F1511</color>
+    <color name="md_theme_dark_on_surface">#DEE4DE</color>
+    <color name="md_theme_dark_surface_variant">#404943</color>
+    <color name="md_theme_dark_on_surface_variant">#C0C9C1</color>
+    <color name="md_theme_dark_outline">#8A938C</color>
+    <color name="md_theme_dark_outline_variant">#404943</color>
+    <!-- Superfícies em camadas (cartões, campos) -->
+    <color name="md_theme_dark_surface_container_lowest">#0A0F0C</color>
+    <color name="md_theme_dark_surface_container_low">#171D19</color>
+    <color name="md_theme_dark_surface_container">#1B211D</color>
+    <color name="md_theme_dark_surface_container_high">#262B28</color>
+    <color name="md_theme_dark_surface_container_highest">#303632</color>
+    <!-- Cores inversas (Snackbar) -->
+    <color name="md_theme_dark_inverse_surface">#DEE4DE</color>
+    <color name="md_theme_dark_inverse_on_surface">#2C322E</color>
+    <color name="md_theme_dark_inverse_primary">#226A4C</color>
+
+    <!-- Ícone do app (camada de fundo do ícone adaptativo) -->
+    <color name="icone_fundo">#226A4C</color>
+    <color name="icone_frente">#FFFFFF</color>
 </resources>
