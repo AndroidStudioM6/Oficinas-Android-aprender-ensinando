@@ -1,9 +1,120 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+        LISTA DE TAREFAS — Grupo 5 (Temas e estilos)
+
+          1. Base.Theme.Oficina_Android -> CORES do modo claro
+             (values-night/themes.xml redefine este estilo com as cores do modo escuro)
+          2. Theme.Oficina_Android      -> tipografia (igual nos dois modos)
+          3. Estilos reutilizáveis  -> cartão, botão, campo e textos
+
+        Regra: nenhum layout usa cor fixa. Tudo vem do tema (?attr/...).
+    -->
+
+    <!-- ===================== 1. CORES (modo claro) ===================== -->
     <style name="Base.Theme.Oficina_Android" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Cor principal (botões, destaques) -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_on_primary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_on_primary_container</item>
+        <!-- Cor secundária -->
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_on_secondary_container</item>
+        <!-- Cor terciária (contraste/acento) -->
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_on_tertiary_container</item>
+        <!-- Erro -->
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOnError">@color/md_theme_light_on_error</item>
+        <item name="colorErrorContainer">@color/md_theme_light_error_container</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_on_error_container</item>
+        <!-- Fundo e superfícies -->
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_on_background</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_on_surface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_on_surface_variant</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="colorOutlineVariant">@color/md_theme_light_outline_variant</item>
+        <!-- Superfícies em camadas (cartões, campos) -->
+        <item name="colorSurfaceContainerLowest">@color/md_theme_light_surface_container_lowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_theme_light_surface_container_low</item>
+        <item name="colorSurfaceContainer">@color/md_theme_light_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/md_theme_light_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/md_theme_light_surface_container_highest</item>
+        <!-- Cores inversas (Snackbar) -->
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverse_surface</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_inverse_on_surface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_inverse_primary</item>
     </style>
 
-    <style name="Theme.Oficina_Android" parent="Base.Theme.Oficina_Android" />
+    <!-- ===================== 2. TEMA DO APP ===================== -->
+    <style name="Theme.Oficina_Android" parent="Base.Theme.Oficina_Android">
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Oficina_Android.TituloGrande</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Oficina_Android.Titulo</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Oficina_Android.Subtitulo</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Oficina_Android.Rotulo</item>
+    </style>
+
+    <!-- ===================== 3. ESTILOS ===================== -->
+
+    <!-- Tipografia (fonte Poppins em res/font) -->
+    <style name="TextAppearance.Oficina_Android.TituloGrande" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+    <style name="TextAppearance.Oficina_Android.Titulo" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+    <style name="TextAppearance.Oficina_Android.Subtitulo" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+    <style name="TextAppearance.Oficina_Android.Rotulo" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <!-- Cartão de cada tarefa (item_task.xml) -->
+    <style name="Widget.Oficina_Android.CardTarefa" parent="Widget.Material3.CardView.Filled">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerHigh</item>
+    </style>
+
+    <!-- Botão principal -->
+    <style name="Widget.Oficina_Android.Botao" parent="Widget.Material3.Button">
+        <item name="android:minHeight">56dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Oficina_Android.Rotulo</item>
+    </style>
+
+    <!-- Campo de texto -->
+    <style name="Widget.Oficina_Android.CampoTexto" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    </style>
+
+    <!-- Título de cada tarefa -->
+    <style name="Widget.Oficina_Android.TituloTarefa" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <!-- Textos secundários (subtítulo, lista vazia) -->
+    <style name="Widget.Oficina_Android.TextoApoio" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
 </resources>

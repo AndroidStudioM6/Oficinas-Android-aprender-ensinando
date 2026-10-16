@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ilustração da tela de boas-vindas: prancheta com tarefas (mesmo desenho do ícone do app).
+     As cores vêm do tema: fundo colorPrimaryContainer, traço colorOnPrimaryContainer. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="?attr/colorPrimaryContainer"
+        android:pathData="M54,54m-54,0a54,54 0,1 1,108 0a54,54 0,1 1,-108 0" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,32h28a6,6 0,0 1,6 6v36a6,6 0,0 1,-6 6h-28a6,6 0,0 1,-6 -6v-36a6,6 0,0 1,6 -6z"
+        android:strokeWidth="4"
+        android:strokeColor="?attr/colorOnPrimaryContainer" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,47.5l4,4l7,-8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4"
+        android:strokeColor="?attr/colorPrimary" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M56,47.5h12"
+        android:strokeLineCap="round"
+        android:strokeWidth="4"
+        android:strokeColor="?attr/colorOnPrimaryContainer" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40.5,64a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0z"
+        android:strokeWidth="3.5"
+        android:strokeColor="?attr/colorOnPrimaryContainer" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M56,64h12"
+        android:strokeLineCap="round"
+        android:strokeWidth="4"
+        android:strokeColor="?attr/colorOnPrimaryContainer" />
+</vector>

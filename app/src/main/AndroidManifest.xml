@@ -21,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".TaskListActivity"
+            android:exported="false"
+            android:label="@string/title_tasks" />
     </application>
 
 </manifest>
