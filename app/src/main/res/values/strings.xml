@@ -8,4 +8,12 @@
     <string name="welcome_title">Gerenciador de Tarefas</string>
     <string name="welcome_subtitle">Organize seu dia de forma simples e prática.</string>
     <string name="btn_open_tasks">Abrir Lista de Tarefas</string>
+    <string name="nav_home">Início</string>
+    <string name="nav_add_task">Add Tarefa</string>
+    <string name="nav_task_list">Lista de Tarefas</string>
+    <string name="nav_about">Sobre</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
+    <string name="about_version">Versão 1.0</string>
+    <string name="about_description">Aplicativo desenvolvido no âmbito da Oficina Android - Aprender Ensinando. Um gerenciador de tarefas simples, prático e funcional construído com Material 3.</string>
 </resources>
