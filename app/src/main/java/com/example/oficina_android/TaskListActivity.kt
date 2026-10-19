@@ -1,9 +1,12 @@
+
 package com.example.oficina_android
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,9 +14,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 
 class TaskListActivity : AppCompatActivity() {
 
+    // Lista inicial de tarefas
     private val taskList = mutableListOf(
         Task(
             title = "Estudar para a prova de Android",
@@ -43,6 +48,8 @@ class TaskListActivity : AppCompatActivity() {
 
     private lateinit var adapter: TaskAdapter
     private lateinit var fabAddTask: ExtendedFloatingActionButton
+    private lateinit var etTaskInput: TextInputEditText
+    private lateinit var btnAdd: Button
     private lateinit var rvTasks: RecyclerView
     private lateinit var tvEmpty: TextView
     private lateinit var toolbar: MaterialToolbar
@@ -51,25 +58,54 @@ class TaskListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_task_list)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainTaskList)) { v, insets ->
+
+        val rootLayout = findViewById<View>(R.id.mainTaskList)
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+
             insets
         }
 
         initViews()
+        setupToolbar()
         setupRecyclerView()
         setupListeners()
         updateEmptyState()
+
+        // Foca no campo de cadastro quando solicitado
+        if (intent.getBooleanExtra("FOCUS_ADD", false)) {
+            etTaskInput.requestFocus()
+        }
     }
 
+    // Inicializa os componentes da tela
     private fun initViews() {
         toolbar = findViewById(R.id.toolbarTaskList)
         fabAddTask = findViewById(R.id.fabAddTask)
+        etTaskInput = findViewById(R.id.etTaskInput)
+        btnAdd = findViewById(R.id.btnAdd)
         rvTasks = findViewById(R.id.rvTasks)
         tvEmpty = findViewById(R.id.tvEmpty)
     }
 
+    // Configura a barra superior
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+    }
+
+    // Configura a lista de tarefas
     private fun setupRecyclerView() {
         adapter = TaskAdapter(
             taskList,
@@ -79,20 +115,41 @@ class TaskListActivity : AppCompatActivity() {
                 updateEmptyState()
             }
         )
+
         rvTasks.adapter = adapter
     }
 
+    // Configura os botões da tela
     private fun setupListeners() {
-        toolbar.setNavigationOnClickListener {
-            finish()
+
+        // Cadastro rápido de tarefas
+        btnAdd.setOnClickListener {
+            val text = etTaskInput.text?.toString()?.trim() ?: ""
+
+            if (text.isNotEmpty()) {
+                val newTask = Task(title = text)
+
+                adapter.addTask(newTask)
+                etTaskInput.text?.clear()
+                updateEmptyState()
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "Digite o título da tarefa",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
+        // Abre a tela de cadastro completo
         fabAddTask.setOnClickListener {
             val intent = Intent(this, TaskCreateActivity::class.java)
             startActivity(intent)
         }
     }
 
+    // Atualiza a mensagem de lista vazia
     private fun updateEmptyState() {
         if (taskList.isEmpty()) {
             tvEmpty.visibility = View.VISIBLE
