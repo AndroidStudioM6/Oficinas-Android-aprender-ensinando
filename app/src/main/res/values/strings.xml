@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Oficina_Android</string>
-    <string name="title_tasks">Lista de Tarefas</string>
-    <string name="hint_new_task">Nova tarefa&#8230;</string>
-    <string name="btn_add">Adicionar</string>
-    <string name="desc_delete_task">Excluir tarefa</string>
-    <string name="empty_tasks">Nenhuma tarefa cadastrada</string>
-    <string name="welcome_title">Gerenciador de Tarefas</string>
-    <string name="welcome_subtitle">Organize seu dia de forma simples e prática.</string>
-    <string name="btn_open_tasks">Abrir Lista de Tarefas</string>
+    <string name="app_name" translatable="false">Oficina_Android</string>
+    <string name="title_tasks" translatable="false">Lista de Tarefas</string>
+    <string name="hint_new_task" translatable="false">Nova tarefa&#8230;</string>
+    <string name="btn_add" translatable="false">Adicionar</string>
+    <string name="desc_delete_task" translatable="false">Excluir tarefa</string>
+    <string name="empty_tasks" translatable="false">Nenhuma tarefa cadastrada</string>
+    <string name="welcome_title" translatable="false">Gerenciador de Tarefas</string>
+    <string name="welcome_subtitle" translatable="false">Organize seu dia de forma simples e prática.</string>
+    <string name="btn_open_tasks" translatable="false">Abrir Lista de Tarefas</string>
 </resources>
