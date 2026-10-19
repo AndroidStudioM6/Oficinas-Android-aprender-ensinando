@@ -26,6 +26,11 @@
             android:name=".TaskListActivity"
             android:exported="false"
             android:label="@string/title_tasks" />
+
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:label="@string/nav_about" />
     </application>
 
 </manifest>

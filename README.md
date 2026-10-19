@@ -2,16 +2,16 @@
 
 
 
-| Grupo | Tema (Ao final da oficina, o app comum…) | Integrantes |
-|:-----:|------------------------------------------|-------------|
-| 1 | **Kotlin essencial** (existe e roda, e as funções de validação foram testadas no Logcat) | Lucas, Lucas C. e Antonio |
-| 2 | **Objetos (POO em Kotlin)** (tem o modelo de dados (Tarefa, Prioridade) e o repositório) | William, A. Vargas e G. Brandão |
+| Grupo | Tema (Ao final da oficina, o app comum…) | Integrantes                                     |
+|:-----:|------------------------------------------|-------------------------------------------------|
+| 1 | **Kotlin essencial** (existe e roda, e as funções de validação foram testadas no Logcat) | Lucas, Lucas C. e Antonio                       |
+| 2 | **Objetos (POO em Kotlin)** (tem o modelo de dados (Tarefa, Prioridade) e o repositório) | William, A. Vargas e G. Brandão                 |
 | 3 | **Coleções** (guarda, filtra e ordena tarefas na memória) | Vitor D., Leonardo, Bernardo, Aldrey, G. Farias |
-| 4 | **Componentes de interface** (tem uma tela que cadastra tarefas e as mostra numa lista) | Gabriel S., Gabriel P., Pedro, Joaquim |
-| 5 | **Temas e estilos** (tem identidade visual própria e modo escuro) | A. Biehl, A. Brito e Flavia |
-| 6 | **Fragments** (está dividido em telas: lista, cadastro e sobre) | Mateus , Jorge, Isaac e Rafaela |
-| 7 | **Barra de navegação e menus** (navega pela barra inferior e tem menus) | Vitor, Otavio e Bruno |
-| 8 | **Banco de dados no Android** (salva as tarefas no banco: elas não somem ao fechar o app) | klint, Nicoly, Rafaela C., Mayara, Gustavo |
+| 4 | **Componentes de interface** (tem uma tela que cadastra tarefas e as mostra numa lista) | Gabriel S., Gabriel P., Pedro, Joaquim          |
+| 5 | **Temas e estilos** (tem identidade visual própria e modo escuro) | A. Biehl, A. Brito e Flavia                     |
+| 6 | **Fragments** (está dividido em telas: lista, cadastro e sobre) | Mateus , Jorge, Isaac e Rafaela                 |
+| 7 | **Barra de navegação e menus** (navega pela barra inferior e tem menus) | Vitor, Bruno e Otavio                           |
+| 8 | **Banco de dados no Android** (salva as tarefas no banco: elas não somem ao fechar o app) | klint, Nicoly, Rafaela C., Mayara, Gustavo      |
 
 
 ## Organização por branches
