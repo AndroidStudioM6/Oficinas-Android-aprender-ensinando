@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -13,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Oficina_Android">
 
-        <!-- Tela de Início (Home) -->
+        <!-- Tela Principal com Fragments e BottomNavigationView -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -25,25 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Tela de Lista de Tarefas -->
-        <activity
-            android:name=".TaskListActivity"
-            android:exported="false"
-            android:label="@string/title_tasks" />
-
-        <!-- Tela de Cadastro de Tarefa -->
-        <activity
-            android:name=".TaskCreateActivity"
-            android:exported="false"
-            android:label="@string/title_add_task"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- Tela Sobre o Projeto -->
-        <activity
-            android:name=".AboutActivity"
-            android:exported="false"
-            android:label="@string/title_about" />
 
     </application>
 

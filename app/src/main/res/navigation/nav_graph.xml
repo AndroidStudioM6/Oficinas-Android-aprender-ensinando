@@ -10,29 +10,24 @@
         android:name="com.example.oficina_android.HomeFragment"
         android:label="@string/nav_home" />
 
-    <!--
-        Destinos das telas funcionais.
-        A equipe de Fragments poderá posteriormente trocar a tag <activity> por <fragment>
-        sem precisar alterar a estrutura do menu ou do MainActivity.
-    -->
-    <activity
+    <fragment
         android:id="@+id/nav_add_task"
-        android:name="com.example.oficina_android.TaskListActivity"
+        android:name="com.example.oficina_android.AddTaskFragment"
         android:label="@string/nav_add_task">
         <argument
             android:name="FOCUS_ADD"
-            android:defaultValue="true"
+            android:defaultValue="false"
             app:argType="boolean" />
-    </activity>
+    </fragment>
 
-    <activity
+    <fragment
         android:id="@+id/nav_task_list"
-        android:name="com.example.oficina_android.TaskListActivity"
+        android:name="com.example.oficina_android.TaskListFragment"
         android:label="@string/nav_task_list" />
 
-    <activity
+    <fragment
         android:id="@+id/nav_about"
-        android:name="com.example.oficina_android.AboutActivity"
+        android:name="com.example.oficina_android.AboutFragment"
         android:label="@string/nav_about" />
 
 </navigation>
