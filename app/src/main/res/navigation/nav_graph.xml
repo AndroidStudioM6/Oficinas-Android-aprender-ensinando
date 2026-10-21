@@ -4,7 +4,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/nav_home">
 
-    <!-- Tela inicial (Fragment Home) -->
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.oficina_android.HomeFragment"
@@ -13,12 +12,7 @@
     <fragment
         android:id="@+id/nav_add_task"
         android:name="com.example.oficina_android.AddTaskFragment"
-        android:label="@string/nav_add_task">
-        <argument
-            android:name="FOCUS_ADD"
-            android:defaultValue="false"
-            app:argType="boolean" />
-    </fragment>
+        android:label="@string/nav_add_task" />
 
     <fragment
         android:id="@+id/nav_task_list"

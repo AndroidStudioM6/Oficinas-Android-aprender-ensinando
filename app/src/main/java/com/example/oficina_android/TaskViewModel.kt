@@ -6,51 +6,36 @@ import androidx.lifecycle.ViewModel
 
 class TaskViewModel : ViewModel() {
 
-    private val _tasks = MutableLiveData<MutableList<Task>>(
+    private val _taskList = MutableLiveData<List<Task>>(
         mutableListOf(
-            Task(
-                title = "Estudar para a prova de Android",
-                description = "Revisar Activity, Layouts XML, Eventos e Material Design 3.",
-                priority = "Alta",
-                creationDate = "15/10/2026",
-                dueDate = "20/10/2026",
-                isCompleted = false
-            ),
-            Task(
-                title = "Implementar interface de cadastro de tarefas",
-                description = "Criar os campos de título, descrição, prioridade, prazos e checkbox.",
-                priority = "Alta",
-                creationDate = "16/10/2026",
-                dueDate = "22/10/2026",
-                isCompleted = false
-            ),
-            Task(
-                title = "Criar tela Sobre o Projeto",
-                description = "Apresentar descrição do app, funcionalidades e equipe.",
-                priority = "Média",
-                creationDate = "17/10/2026",
-                dueDate = "25/10/2026",
-                isCompleted = true
-            )
+            Task(title = "Estudar para a prova"),
+            Task(title = "Fazer os exercícios de Android"),
+            Task(title = "Comprar pão", isCompleted = true)
         )
     )
-    val tasks: LiveData<MutableList<Task>> get() = _tasks
+    val taskList: LiveData<List<Task>> = _taskList
 
-    fun addTask(task: Task) {
-        val currentList = _tasks.value ?: mutableListOf()
-        currentList.add(0, task)
-        _tasks.value = currentList
+    fun addTask(title: String) {
+        val current = _taskList.value?.toMutableList() ?: mutableListOf()
+        current.add(Task(title = title))
+        _taskList.value = current
     }
 
-    fun removeTask(task: Task) {
-        val currentList = _tasks.value ?: mutableListOf()
-        if (currentList.remove(task)) {
-            _tasks.value = currentList
+    fun toggleTaskCompleted(task: Task, isCompleted: Boolean) {
+        val current = _taskList.value?.toMutableList() ?: return
+        val index = current.indexOfFirst { it.id == task.id }
+        if (index != -1) {
+            current[index] = current[index].copy(isCompleted = isCompleted)
+            _taskList.value = current
         }
     }
 
-    fun updateTaskCompletion(task: Task, isCompleted: Boolean) {
-        task.isCompleted = isCompleted
-        _tasks.value = _tasks.value
+    fun removeTask(task: Task) {
+        val current = _taskList.value?.toMutableList() ?: return
+        val index = current.indexOfFirst { it.id == task.id }
+        if (index != -1) {
+            current.removeAt(index)
+            _taskList.value = current
+        }
     }
 }

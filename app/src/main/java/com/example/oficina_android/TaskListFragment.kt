@@ -1,25 +1,21 @@
 package com.example.oficina_android
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 
-/**
- * Fragment para a lista de tarefas.
- */
-class TaskListFragment : Fragment(R.layout.activity_task_list) {
+class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 
     private lateinit var viewModel: TaskViewModel
     private lateinit var adapter: TaskAdapter
-    private lateinit var fabAddTask: ExtendedFloatingActionButton
     private lateinit var etTaskInput: TextInputEditText
     private lateinit var btnAdd: Button
     private lateinit var rvTasks: RecyclerView
@@ -33,52 +29,56 @@ class TaskListFragment : Fragment(R.layout.activity_task_list) {
         initViews(view)
         setupRecyclerView()
         setupListeners()
+        observeViewModel()
 
-        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            adapter = TaskAdapter(
-                tasks,
-                onTaskChecked = { task, isChecked ->
-                    viewModel.updateTaskCompletion(task, isChecked)
-                },
-                onTaskDeleted = { task ->
-                    viewModel.removeTask(task)
-                    updateEmptyState(tasks)
-                }
-            )
-            rvTasks.adapter = adapter
-            updateEmptyState(tasks)
-        }
-
-        arguments?.getBoolean("FOCUS_ADD", false)?.let { focusAdd ->
-            if (focusAdd) {
-                etTaskInput.requestFocus()
+        parentFragmentManager.setFragmentResultListener("TASK_LIST_FOCUS", viewLifecycleOwner) { _, bundle ->
+            val shouldFocus = bundle.getBoolean("FOCUS_INPUT", false)
+            if (shouldFocus) {
+                focusInput()
+            } else {
+                clearInputFocus()
             }
         }
     }
 
     private fun initViews(view: View) {
-        fabAddTask = view.findViewById(R.id.fabAddTask)
         etTaskInput = view.findViewById(R.id.etTaskInput)
         btnAdd = view.findViewById(R.id.btnAdd)
         rvTasks = view.findViewById(R.id.rvTasks)
         tvEmpty = view.findViewById(R.id.tvEmpty)
+    }
 
-        val toolbar = view.findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbarTaskList)
-        toolbar?.setNavigationOnClickListener {
-            // No action needed for fragment within bottom nav
+    fun focusInput() {
+        if (::etTaskInput.isInitialized) {
+            etTaskInput.post {
+                etTaskInput.requestFocus()
+                hideKeyboard()
+            }
         }
     }
 
+    fun clearInputFocus() {
+        if (::etTaskInput.isInitialized) {
+            etTaskInput.post {
+                etTaskInput.clearFocus()
+                hideKeyboard()
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(etTaskInput.windowToken, 0)
+    }
+
     private fun setupRecyclerView() {
-        val currentTasks = viewModel.tasks.value ?: mutableListOf()
         adapter = TaskAdapter(
-            currentTasks,
+            tasks = mutableListOf(),
             onTaskChecked = { task, isChecked ->
-                viewModel.updateTaskCompletion(task, isChecked)
+                viewModel.toggleTaskCompleted(task, isChecked)
             },
             onTaskDeleted = { task ->
                 viewModel.removeTask(task)
-                updateEmptyState(viewModel.tasks.value ?: mutableListOf())
             }
         )
         rvTasks.adapter = adapter
@@ -88,16 +88,18 @@ class TaskListFragment : Fragment(R.layout.activity_task_list) {
         btnAdd.setOnClickListener {
             val text = etTaskInput.text?.toString()?.trim() ?: ""
             if (text.isNotEmpty()) {
-                val newTask = Task(title = text)
-                viewModel.addTask(newTask)
+                viewModel.addTask(text)
                 etTaskInput.text?.clear()
             } else {
                 Toast.makeText(requireContext(), "Digite o título da tarefa", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
-        fabAddTask.setOnClickListener {
-            findNavController().navigate(R.id.nav_add_task)
+    private fun observeViewModel() {
+        viewModel.taskList.observe(viewLifecycleOwner) { tasks ->
+            adapter.updateTasks(tasks)
+            updateEmptyState(tasks)
         }
     }
 

@@ -98,4 +98,10 @@ class TaskAdapter(
             notifyItemRemoved(index)
         }
     }
+
+    fun updateTasks(newTasks: List<Task>) {
+        tasks.clear()
+        tasks.addAll(newTasks)
+        notifyDataSetChanged()
+    }
 }
