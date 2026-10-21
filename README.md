@@ -10,7 +10,7 @@
 | 4 | **Componentes de interface** (tem uma tela que cadastra tarefas e as mostra numa lista) | Gabriel S., Gabriel P., Pedro, Joaquim          |
 | 5 | **Temas e estilos** (tem identidade visual própria e modo escuro) | A. Biehl, A. Brito e Flavia                     |
 | 6 | **Fragments** (está dividido em telas: lista, cadastro e sobre) | Mateus , Jorge, Isaac e Rafaela                 |
-| 7 | **Barra de navegação e menus** (navega pela barra inferior e tem menus) | Vitor, Bruno e Otavio                           |
+| 7 | **Barra de navegação e menus** (navega pela barra inferior e tem menus) | Vitor, Bruno e Otávio                           |
 | 8 | **Banco de dados no Android** (salva as tarefas no banco: elas não somem ao fechar o app) | klint, Nicoly, Rafaela C., Mayara, Gustavo      |
 
 
