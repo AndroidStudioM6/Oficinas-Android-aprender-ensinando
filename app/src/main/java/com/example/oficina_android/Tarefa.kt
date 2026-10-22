@@ -1,7 +1,7 @@
 package com.example.oficina_android
 
 data class Tarefa(
-    val id: Long = System.currentTimeMillis(),
+    val id: Long = 0L,
     val titulo: String,
     val descricao: String = "",
     val prioridade: Prioridade = Prioridade.MEDIA,

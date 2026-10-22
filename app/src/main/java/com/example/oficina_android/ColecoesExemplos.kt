@@ -28,7 +28,7 @@ object ColecoesExemplos {
         val mapaNotas: Map<String, Int> = mapOf(
             "Ana" to 9,
             "João" to 7,
-            "Carlos" to 8
+            "Carlos" to 8,
         )
         Log.d(TAG, "Map (Chave to Valor): $mapaNotas")
 
