@@ -28,6 +28,12 @@
             android:label="@string/title_tasks" />
 
         <activity
+            android:name=".TaskCreateActivity"
+            android:exported="false"
+            android:label="@string/title_add_task"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".AboutActivity"
             android:exported="false"
             android:label="@string/nav_about" />

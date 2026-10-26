@@ -1,19 +1,108 @@
-<resources>
-    <string name="app_name">Oficina_Android</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Oficina Android</string>
+    <string name="welcome_title">Gerenciador de Tarefas</string>
+    <string name="welcome_subtitle">Organize seu dia de forma simples e prática.</string>
+    <string name="btn_open_tasks">Abrir Lista de Tarefas</string>
+
+    <!-- Cadastro de Tarefa -->
+    <string name="title_add_task">Cadastro de Tarefa</string>
+    <string name="label_task_title">Título</string>
+    <string name="hint_task_title">Ex: Estudar para a prova de Android</string>
+    <string name="label_task_description">Descrição</string>
+    <string name="hint_task_description">Ex: Revisar componentes de interface e layouts</string>
+    <string name="label_task_priority">Prioridade</string>
+    <string name="label_task_category">Categoria</string>
+    <string name="category_general">Geral</string>
+    <string name="label_task_category_value">Categoria: %s</string>
+    <string name="priority_high">Alta</string>
+    <string name="priority_medium">Média</string>
+    <string name="priority_low">Baixa</string>
+    <string name="label_creation_date">Data de Criação</string>
+    <string name="label_due_date">Prazo (Data de Entrega)</string>
+    <string name="checkbox_completed">Tarefa Concluída</string>
+    <string name="btn_save_task">Cadastrar Tarefa</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="toast_task_created">Tarefa cadastrada com sucesso!</string>
+    <string name="error_task_title_required">Informe o t\u00edtulo da tarefa.</string>
+    <string name="error_invalid_date">Informe uma data v\u00e1lida no formato dd/MM/aaaa.</string>
+
+    <!-- Lista de Tarefas -->
     <string name="title_tasks">Lista de Tarefas</string>
     <string name="hint_new_task">Nova tarefa&#8230;</string>
     <string name="btn_add">Adicionar</string>
     <string name="desc_delete_task">Excluir tarefa</string>
     <string name="empty_tasks">Nenhuma tarefa cadastrada</string>
-    <string name="welcome_title">Gerenciador de Tarefas</string>
-    <string name="welcome_subtitle">Organize seu dia de forma simples e prática.</string>
-    <string name="btn_open_tasks">Abrir Lista de Tarefas</string>
+    <string name="label_created_at">Criada em: %s</string>
+    <string name="label_due_at">Prazo: %s</string>
+    <string name="hint_search_tasks">Pesquisar tarefas</string>
+    <string name="filter_all">Todas</string>
+    <string name="filter_pending">Pendentes</string>
+    <string name="filter_completed">Concluídas</string>
+    <string name="filter_priority">Prioridade</string>
+    <string name="filter_category">Categoria</string>
+    <string name="filter_no_results">Nenhuma tarefa corresponde aos filtros.</string>
+
+    <!-- Sobre -->
+    <string name="title_about">Sobre o Projeto</string>
+    <string name="about_version">Versão 1.0.0</string>
+    <string name="about_section_description">Sobre o Aplicativo</string>
+    <string name="about_app_description">Este aplicativo é um gerenciador de tarefas desenvolvido como projeto prático nas Oficinas Android. Ele permite organizar tarefas do dia a dia com prioridades, prazos e controle de conclusão.</string>
+    <string name="about_section_features">Recursos da Interface</string>
+    <string name="about_feature_1">• Formulario completo de cadastro com prioridade e prazos</string>
+    <string name="about_feature_2">• Visualização intuitiva da lista com identificação visual</string>
+    <string name="about_feature_3">• Suporte a Tema Claro e Escuro (Material Design 3)</string>
+    <string name="about_feature_4">• Tipografia personalizada e design acessível</string>
+    <string name="about_section_team">Projeto &amp; Equipe</string>
+    <string name="about_team_description">Projeto desenvolvido colaborativamente pelas equipes das Oficinas Android: Aprender Ensinando.</string>
+    <string name="about_description">O Oficina Android é um gerenciador de tarefas criado de forma colaborativa nas Oficinas Android: Aprender Ensinando. A proposta é reunir, em uma experiência simples, o cadastro e a organização das atividades: cada tarefa pode ter descrição, categoria, prioridade, datas e status. A lista permite pesquisar e filtrar os registros, enquanto o banco de dados local mantém as informações disponíveis quando o aplicativo é fechado e aberto novamente.\n\nO projeto integra os conteúdos trabalhados pelos oito grupos, desde os fundamentos de Kotlin até persistência de dados, passando por interface, navegação, fragments e temas.</string>
+    <string name="about_academic_info">Informações acadêmicas</string>
+    <string name="about_discipline">Disciplina: Android</string>
+    <string name="about_school">Colégio ULBRA São Lucas</string>
+    <string name="about_module">Módulo 6</string>
+    <string name="about_advisor">Professor orientador: Éder de Rosso</string>
+    <string name="about_rights">Todos os direitos reservados.</string>
+    <string name="about_team_responsibility">Responsabilidade: %s</string>
+    <string name="about_team_members">Equipe: %s</string>
+    <string-array name="about_team_titles">
+        <item tools:ignore="Typos">Grupo 1 · Kotlin essencial</item>
+        <item>Grupo 2 · Objetos e POO em Kotlin</item>
+        <item>Grupo 3 · Coleções</item>
+        <item>Grupo 4 · Componentes de interface</item>
+        <item>Grupo 5 · Temas e estilos</item>
+        <item>Grupo 6 · Fragments</item>
+        <item>Grupo 7 · Barra de navegação e menus</item>
+        <item>Grupo 8 · Banco de dados no Android</item>
+    </string-array>
+    <string-array name="about_team_responsibilities">
+        <item>Fundamentos de Kotlin e validações de funcionamento conferidas pelo Logcat.</item>
+        <item>Modelagem das tarefas e prioridades com orientação a objetos e estrutura do repositório.</item>
+        <item>Operações de coleção para guardar, buscar, filtrar e ordenar tarefas.</item>
+        <item>Componentes e telas de cadastro e listagem de tarefas.</item>
+        <item>Identidade visual, estilos reutilizáveis e suporte aos modos claro e escuro.</item>
+        <item>Organização do aplicativo em telas com fragments.</item>
+        <item>Navegação entre as áreas do aplicativo e estrutura dos menus.</item>
+        <item>Persistência local das tarefas para manter os dados entre sessões.</item>
+    </string-array>
+    <string-array name="about_team_members">
+        <item>Lucas, Lucas C. e Antonio</item>
+        <item>William, A. Vargas e G. Brandão</item>
+        <item>Vitor D., Leonardo, Bernardo, Aldrey e G. Farias</item>
+        <item>Gabriel S., Gabriel P., Pedro e Joaquim</item>
+        <item>A. Biehl, A. Brito e Flavia</item>
+        <item>Mateus, Jorge, Isaac e Rafaela</item>
+        <item>Vitor, Bruno e Otavio</item>
+        <item>klint, Nicoly, Rafaela C., Mayara e Gustavo</item>
+    </string-array>
+
+    <!-- Navegação original do grupo 7 e fragments integrados. -->
     <string name="nav_home">Início</string>
     <string name="nav_add_task">Add Tarefa</string>
     <string name="nav_task_list">Lista de Tarefas</string>
     <string name="nav_about">Sobre</string>
-    <string name="navigation_drawer_open">Abrir menu</string>
-    <string name="navigation_drawer_close">Fechar menu</string>
-    <string name="about_version">Versão 1.0</string>
-    <string name="about_description">Aplicativo desenvolvido no âmbito da Oficina Android - Aprender Ensinando. Um gerenciador de tarefas simples, prático e funcional construído com Material 3.</string>
+    <string name="nav_settings">Configurações</string>
+    <string name="settings_theme_title">Aparência</string>
+    <string name="settings_theme_summary">Escolha como o aplicativo deve exibir as cores.</string>
+    <string name="settings_theme_system">Padrão do sistema</string>
+    <string name="settings_theme_light">Claro</string>
+    <string name="settings_theme_dark">Escuro</string>
 </resources>
