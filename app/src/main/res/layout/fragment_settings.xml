@@ -56,13 +56,19 @@
                         android:id="@+id/themeLight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/settings_theme_light" />
+                    android:drawableEnd="@drawable/ic_sun"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="?attr/colorPrimary"
+                    android:text="@string/settings_theme_light" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/themeDark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/settings_theme_dark" />
+                    android:drawableEnd="@drawable/ic_moon"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="?attr/colorPrimary"
+                    android:text="@string/settings_theme_dark" />
                 </RadioGroup>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

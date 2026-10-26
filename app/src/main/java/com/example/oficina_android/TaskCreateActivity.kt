@@ -2,7 +2,6 @@ package com.example.oficina_android
 
 import android.os.Bundle
 import android.widget.AutoCompleteTextView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
@@ -35,15 +34,20 @@ class TaskCreateActivity : AppCompatActivity() {
             insets
         }
 
-        val priorityOptions = arrayOf(
-            getString(R.string.priority_high),
+        val priorityOptions = listOf(
+            getString(R.string.priority_low),
             getString(R.string.priority_medium),
-            getString(R.string.priority_low)
+            getString(R.string.priority_high)
         )
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, priorityOptions)
         val actvPriority = findViewById<AutoCompleteTextView>(R.id.actvPriority)
-        actvPriority.setAdapter(adapter)
-        actvPriority.setText(priorityOptions.first(), false)
+        actvPriority.setAdapter(StaticDropdownAdapter(this, priorityOptions))
+        val defaultPriority = getString(R.string.priority_high)
+        actvPriority.setText(defaultPriority, false)
+        PriorityTheme.applyText(actvPriority, defaultPriority)
+        actvPriority.setOnItemClickListener { _, _, position, _ ->
+            PriorityTheme.applyText(actvPriority, priorityOptions[position])
+        }
+        actvPriority.setOnClickListener { actvPriority.showDropDown() }
 
         val etTitle = findViewById<TextInputEditText>(R.id.etTitle)
         val etDescription = findViewById<TextInputEditText>(R.id.etDescription)
@@ -55,6 +59,8 @@ class TaskCreateActivity : AppCompatActivity() {
         etDescription.text?.clear()
         etCreationDate.setText(dateFormat.format(Date()))
         etDueDate.text?.clear()
+        DateInputFormatter.attach(etCreationDate)
+        DateInputFormatter.attach(etDueDate)
 
         val btnSaveTask = findViewById<Button>(R.id.btnSaveTask)
 
@@ -78,6 +84,13 @@ class TaskCreateActivity : AppCompatActivity() {
                 etDueDate.error = getString(R.string.error_invalid_date)
                 return@setOnClickListener
             }
+            if (dueDate != null && creationDate.after(dueDate)) {
+                etDueDate.error = getString(R.string.error_due_date_before_creation)
+                etDueDate.requestFocus()
+                return@setOnClickListener
+            }
+            etCreationDate.error = null
+            etDueDate.error = null
 
             etTitle.error = null
             val priority = when (actvPriority.text?.toString()) {

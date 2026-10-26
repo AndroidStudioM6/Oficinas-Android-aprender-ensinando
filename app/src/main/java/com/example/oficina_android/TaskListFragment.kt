@@ -6,10 +6,14 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 
@@ -19,6 +23,8 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
     private lateinit var tvEmpty: TextView
     private lateinit var searchInput: TextInputEditText
     private lateinit var statusFilters: ChipGroup
+    private lateinit var clearCompletedButton: MaterialButton
+    private lateinit var clearAllButton: MaterialButton
     private lateinit var priorityFilter: AutoCompleteTextView
     private lateinit var categoryFilter: AutoCompleteTextView
     private var allTasks: List<Task> = emptyList()
@@ -35,13 +41,25 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         tvEmpty = view.findViewById(R.id.tvEmpty)
         searchInput = view.findViewById(R.id.etSearchTasks)
         statusFilters = view.findViewById(R.id.statusFilters)
+        clearCompletedButton = view.findViewById(R.id.btnClearCompleted)
+        clearAllButton = view.findViewById(R.id.btnClearAll)
         priorityFilter = view.findViewById(R.id.priorityFilter)
         categoryFilter = view.findViewById(R.id.categoryFilter)
 
         adapter = TaskAdapter(
             tasks = mutableListOf(),
             onTaskChecked = { task, isChecked -> viewModel.toggleTaskCompleted(task, isChecked) },
-            onTaskDeleted = { task -> viewModel.removeTask(task) }
+            onTaskDeleted = { task -> viewModel.removeTask(task) },
+            onTaskClicked = { task ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val storedTask = TarefaRepositorio.listarTodas()
+                        .firstOrNull { it.id.toLong() == task.id }
+                    if (storedTask != null && isAdded) {
+                        TaskEditDialog(requireContext(), viewLifecycleOwner.lifecycleScope)
+                            .show(storedTask) { viewModel.refreshTasks() }
+                    }
+                }
+            }
         )
         rvTasks.adapter = adapter
 
@@ -59,18 +77,23 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 
         val priorities = listOf(
             getString(R.string.filter_all),
-            getString(R.string.priority_high),
+            getString(R.string.priority_low),
             getString(R.string.priority_medium),
-            getString(R.string.priority_low)
+            getString(R.string.priority_high)
         )
-        priorityFilter.setAdapter(
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, priorities)
-        )
+        priorityFilter.setAdapter(StaticDropdownAdapter(requireContext(), priorities))
         priorityFilter.setText(priorities.first(), false)
+        PriorityTheme.applyText(priorityFilter, priorities.first())
+        priorityFilter.setOnClickListener { priorityFilter.showDropDown() }
 
         statusFilters.setOnCheckedStateChangeListener { _, _ -> applyFilters() }
+        clearCompletedButton.setOnClickListener { confirmClearCompletedTasks() }
+        clearAllButton.setOnClickListener { confirmClearAllTasks() }
         searchInput.addTextChangedListener(AfterTextChangedListener { applyFilters() })
-        priorityFilter.setOnItemClickListener { _, _, _, _ -> applyFilters() }
+        priorityFilter.setOnItemClickListener { _, _, position, _ ->
+            PriorityTheme.applyText(priorityFilter, priorities[position])
+            applyFilters()
+        }
         categoryFilter.setOnItemClickListener { _, _, _, _ -> applyFilters() }
     }
 
@@ -114,12 +137,36 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         }
 
         adapter.updateTasks(filtered)
+        clearCompletedButton.isEnabled = allTasks.any { it.isCompleted }
+        clearAllButton.isEnabled = allTasks.isNotEmpty()
         val noTasks = filtered.isEmpty()
         tvEmpty.text = getString(
             if (allTasks.isEmpty()) R.string.empty_tasks else R.string.filter_no_results
         )
         tvEmpty.visibility = if (noTasks) View.VISIBLE else View.GONE
         rvTasks.visibility = if (noTasks) View.GONE else View.VISIBLE
+    }
+
+    private fun confirmClearCompletedTasks() {
+        if (allTasks.none { it.isCompleted }) return
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.title_clear_completed)
+            .setMessage(R.string.message_clear_completed)
+            .setNegativeButton(R.string.btn_cancel, null)
+            .setPositiveButton(R.string.btn_clear) { _, _ -> viewModel.clearCompletedTasks() }
+            .show()
+    }
+
+    private fun confirmClearAllTasks() {
+        if (allTasks.isEmpty()) return
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.title_clear_all_tasks)
+            .setMessage(R.string.message_clear_all_tasks)
+            .setNegativeButton(R.string.btn_cancel, null)
+            .setPositiveButton(R.string.btn_delete) { _, _ -> viewModel.clearAllTasks() }
+            .show()
     }
 
     private class AfterTextChangedListener(private val action: () -> Unit) : android.text.TextWatcher {

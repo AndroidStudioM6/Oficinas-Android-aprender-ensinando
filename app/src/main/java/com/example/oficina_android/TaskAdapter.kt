@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 class TaskAdapter(
     private val tasks: MutableList<Task>,
     private val onTaskChecked: (Task, Boolean) -> Unit,
-    private val onTaskDeleted: (Task) -> Unit
+    private val onTaskDeleted: (Task) -> Unit,
+    private val onTaskClicked: (Task) -> Unit = {}
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,6 +45,7 @@ class TaskAdapter(
             task.category
         )
         holder.tvPriorityChip.text = task.priority
+        PriorityTheme.applyBadge(holder.tvPriorityChip, task.priority)
         holder.tvCreationDate.text = holder.itemView.context.getString(
             R.string.label_created_at,
             task.creationDate
@@ -67,6 +69,10 @@ class TaskAdapter(
 
         holder.btnDelete.setOnClickListener {
             onTaskDeleted(task)
+        }
+
+        holder.itemView.setOnClickListener {
+            onTaskClicked(task)
         }
     }
 

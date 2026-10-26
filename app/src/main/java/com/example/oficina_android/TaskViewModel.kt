@@ -47,6 +47,20 @@ class TaskViewModel : ViewModel() {
         }
     }
 
+    fun clearCompletedTasks() {
+        viewModelScope.launch {
+            TarefaRepositorio.limparConcluidas()
+            atualizarTarefas()
+        }
+    }
+
+    fun clearAllTasks() {
+        viewModelScope.launch {
+            TarefaRepositorio.limparTudo()
+            atualizarTarefas()
+        }
+    }
+
     private suspend fun atualizarTarefas() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         _taskList.value = TarefaRepositorio.listarTodas().map { tarefa ->

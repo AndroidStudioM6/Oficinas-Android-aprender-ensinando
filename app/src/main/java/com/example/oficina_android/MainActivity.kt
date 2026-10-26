@@ -1,6 +1,7 @@
 package com.example.oficina_android
 
 import android.os.Bundle
+import android.content.res.Configuration
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatActivity
@@ -24,10 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var isNavigatingFromUser = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(
-            getSharedPreferences(SettingsFragment.PREFERENCES, MODE_PRIVATE)
-                .getInt(SettingsFragment.KEY_THEME_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        )
+        AppCompatDelegate.setDefaultNightMode(SettingsFragment.getThemeMode(this))
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -37,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         topAppBar = findViewById(R.id.topAppBar)
         viewPager = findViewById(R.id.viewPager)
         bottomNav = findViewById(R.id.bottomNavigation)
+        topAppBar.inflateMenu(R.menu.top_app_bar_menu)
+        updateThemeToggleIcon()
+        topAppBar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.action_toggle_theme) {
+                toggleTheme()
+                true
+            } else {
+                false
+            }
+        }
 
         // Adjust system bar insets for top app bar padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainRoot)) { _, insets ->
@@ -82,6 +90,11 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::topAppBar.isInitialized) updateThemeToggleIcon()
     }
 
     private fun handleNavigationItemSelect(itemId: Int) {
@@ -134,6 +147,25 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_settings -> getString(R.string.nav_settings)
             else -> getString(R.string.app_name)
         }
+    }
+
+    private fun toggleTheme() {
+        val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_YES
+        val newMode = if (isDark) {
+            AppCompatDelegate.MODE_NIGHT_NO
+        } else {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
+        SettingsFragment.setThemeMode(this, newMode)
+    }
+
+    private fun updateThemeToggleIcon() {
+        val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_YES
+        topAppBar.menu.findItem(R.id.action_toggle_theme)?.setIcon(
+            if (isDark) R.drawable.ic_sun else R.drawable.ic_moon
+        )
     }
 
     private class MainPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {

@@ -25,6 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/label_task_title"
+                app:placeholderText="@string/hint_task_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -33,8 +34,7 @@
                     android:id="@+id/etTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:hint="@string/hint_task_title" />
+                    android:inputType="textCapSentences" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Descrição da Tarefa -->
@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="@string/label_task_description"
+                app:placeholderText="@string/hint_task_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilTitle">
@@ -55,8 +56,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|start"
                     android:inputType="textMultiLine"
-                    android:lines="3"
-                    android:hint="@string/hint_task_description" />
+                    android:lines="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Categoria -->
@@ -96,7 +96,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilCategory">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/actvPriority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
-                    android:inputType="none" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Prazo (Data de Entrega) -->
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
-                    android:inputType="none" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Status de Conclusão (Checkbox) -->

@@ -21,10 +21,16 @@
     <string name="label_due_date">Prazo (Data de Entrega)</string>
     <string name="checkbox_completed">Tarefa Concluída</string>
     <string name="btn_save_task">Cadastrar Tarefa</string>
+    <string name="edit_task_title">Editar tarefa</string>
+    <string name="btn_save_changes">Salvar alterações</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="toast_task_created">Tarefa cadastrada com sucesso!</string>
+    <string name="error_task_create">Não foi possível cadastrar a tarefa.</string>
+    <string name="toast_task_updated">Tarefa atualizada com sucesso!</string>
+    <string name="error_task_update">Não foi possível atualizar a tarefa.</string>
     <string name="error_task_title_required">Informe o t\u00edtulo da tarefa.</string>
     <string name="error_invalid_date">Informe uma data v\u00e1lida no formato dd/MM/aaaa.</string>
+    <string name="error_due_date_before_creation">O prazo não pode ser anterior à data de criação.</string>
 
     <!-- Lista de Tarefas -->
     <string name="title_tasks">Lista de Tarefas</string>
@@ -38,6 +44,14 @@
     <string name="filter_all">Todas</string>
     <string name="filter_pending">Pendentes</string>
     <string name="filter_completed">Concluídas</string>
+    <string name="btn_clear_completed">Excluir concluídas</string>
+    <string name="btn_clear_all">Excluir todas</string>
+    <string name="title_clear_completed">Limpar tarefas concluídas?</string>
+    <string name="message_clear_completed">As tarefas concluídas serão removidas permanentemente.</string>
+    <string name="title_clear_all_tasks">Excluir todas as tarefas?</string>
+    <string name="message_clear_all_tasks">Todas as tarefas serão removidas permanentemente.</string>
+    <string name="btn_clear">Limpar</string>
+    <string name="btn_delete">Excluir</string>
     <string name="filter_priority">Prioridade</string>
     <string name="filter_category">Categoria</string>
     <string name="filter_no_results">Nenhuma tarefa corresponde aos filtros.</string>
@@ -105,4 +119,6 @@
     <string name="settings_theme_system">Padrão do sistema</string>
     <string name="settings_theme_light">Claro</string>
     <string name="settings_theme_dark">Escuro</string>
+    <string name="action_toggle_theme">Alternar tema</string>
+    <string name="desc_toggle_theme">Alternar entre tema claro e escuro</string>
 </resources>

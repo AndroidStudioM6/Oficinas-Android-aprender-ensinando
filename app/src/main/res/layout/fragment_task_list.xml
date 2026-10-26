@@ -67,15 +67,54 @@
     </com.google.android.material.chip.ChipGroup>
 
     <LinearLayout
-        android:id="@+id/advancedFilters"
+        android:id="@+id/taskDeletionActions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:baselineAligned="false"
+        android:layout_marginTop="2dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/statusFilters">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClearCompleted"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:minHeight="44dp"
+            android:text="@string/btn_clear_completed"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_excluir"
+            app:iconGravity="textStart"
+            app:iconSize="18dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClearAll"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:minHeight="44dp"
+            android:text="@string/btn_clear_all"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_excluir"
+            app:iconGravity="textStart"
+            app:iconSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/advancedFilters"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taskDeletionActions">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPriorityFilter"
